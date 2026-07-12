@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
 **Date:** 2026-07-12  
-**Next action:** Start Group 2 — Part A: Chunking Strategies
+**Next action:** Start Group 3 — Part B: Dense Retrieval (FAISS)
 
 ---
 
@@ -15,7 +15,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 
 ---
 
-## Progress: 4/34 tasks complete
+## Progress: 10/34 tasks complete
 
 ### ✅ Group 1 — Done
 - Dependencies installed (sentence-transformers, faiss-cpu, rank_bm25, pdfplumber, transformers, nltk)
@@ -23,16 +23,21 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 - PDF download cells written (with fallback handling for failed downloads)
 - Corpus loading with per-company word count logging
 
-### ⏳ Group 2 — Next (Part A: Chunking Strategies)
-Tasks 2.1–2.6 in `openspec/changes/assignment-2b-rag-pipeline/tasks.md`:
-- Implement Fixed-Size chunker (200 words, no overlap)
-- Implement Sliding Window chunker (200 words, 20-word overlap)
-- Implement Semantic chunker (sentence-boundary-aware, max 200 words)
-- Compute quality metrics: total chunks, avg size, std dev, broken sentences %
-- Display Step A2 metrics table
-- Select best strategy with justification
+### ✅ Group 2 — Done (Part A: Chunking Strategies)
+- Fixed-size chunker: 1,117 chunks, avg=199.6w, broken=94.9%
+- Sliding window chunker: 1,240 chunks, avg=199.7w, broken=94.9%
+- Semantic chunker: 1,311 chunks, avg=170.1w, broken=7.6% ← selected for Part B
+- Quality metrics table (Step A2) displayed
+- Best strategy justification written (semantic wins on broken sentence %)
+- Full inline comments and justifications added to all cells
 
-### ⏳ Group 3 — Dense Retrieval (FAISS)
+### ⏳ Group 3 — Next (Part B: Dense Retrieval)
+Tasks 3.1–3.4 in `openspec/changes/assignment-2b-rag-pipeline/tasks.md`:
+- Load `all-MiniLM-L6-v2`, embed all 1,311 semantic chunks, L2-normalise
+- Build FAISS IndexFlatIP, time the index build
+- Define 10 domain queries, run dense retrieval (top-5), record per-query latency
+- Manually score top-1 chunk per query on 1–3 scale, compute avg relevance
+
 ### ⏳ Group 4 — Sparse (BM25) + Hybrid (RRF)
 ### ⏳ Group 5 — Cross-Encoder Reranking
 ### ⏳ Group 6 — Tabular RAG
@@ -44,48 +49,37 @@ Tasks 2.1–2.6 in `openspec/changes/assignment-2b-rag-pipeline/tasks.md`:
 | File | Purpose |
 |------|---------|
 | `assignment_2b_rag_pipeline.ipynb` | Main notebook — add all new cells here |
-| `openspec/changes/assignment-2b-rag-pipeline/tasks.md` | Task tracker — mark `[~]` before editing, `[x]` when done |
+| `openspec/changes/assignment-2b-rag-pipeline/tasks.md` | Task tracker |
 | `LESSONS_LEARNED.md` | Auto-update after every non-trivial fix |
 | `TOI.md` | Auto-update with useful commands |
-| `openspec/changes/assignment-2b-rag-pipeline/design.md` | Auto-update with design decisions |
-| `CLAUDE.md` | Project rules — read this first |
+| `openspec/changes/assignment-2b-rag-pipeline/design.md` | Design decisions |
+| `CLAUDE.md` | Project rules |
 
 ---
 
-## Corpus Facts
+## Corpus & Chunking Facts
 - 5 companies: Apple (41,760w), Amazon (42,077w), NVIDIA (92,722w), Tesla (5,554w), Berkshire (40,812w)
 - Total: 222,925 words
-- Expected chunks @ 200 words: ~1,114 (fixed-size), ~1,237 (sliding window)
-- Tesla is very small — only ~27 chunks. Note this in chunking analysis.
+- **Active chunk list: `chunks_semantic` — 1,311 chunks**
+- Tesla note: tiny corpus + two-column PDF artifact → higher broken % than expected
 
 ## Design Decisions Made
 - Embedder: `all-MiniLM-L6-v2` (384-dim, cosine via IndexFlatIP)
+- Chunking: semantic per-company, merged with company metadata tag
 - BM25: `rank_bm25` (BM25Okapi, whitespace tokenised)
 - Hybrid: RRF with k=60
 - Cross-encoder: `cross-encoder/ms-marco-MiniLM-L-6-v2`
 - Table extraction: `pdfplumber` (NVIDIA, Apple, Amazon PDFs — skip Berkshire)
-- PDF fallback: allowed per assignment if download fails
 
 ## Workflow Rules (from CLAUDE.md)
 1. Mark task `[~]` before editing notebook
-2. Complete all 7 checklist steps automatically after each group:
-   - Run cells & verify output
-   - Mark `[x]` in tasks.md
-   - Update LESSONS_LEARNED.md
-   - Update TOI.md
-   - Update design.md (if decisions made)
-   - `git commit`
-   - `git log --oneline -1` to verify
-3. `git push origin master` after every commit
-
-## Hooks Active
-- **PreToolUse**: blocks notebook edits without `[~]` task; blocks `git commit` without docs update
-- **Stop**: shows post-task checklist summary at session end
+2. Complete all 7 checklist steps after each group
+3. Cell outputs left empty — will be populated in Step 7.1 final run
+4. `git push origin master` after every commit
 
 ---
 
 ## To Resume in New Session
 1. Open this file first
-2. Run: `cd /Users/dvksuman/Desktop/Semester3/LLM/ASSIGNMENT2`
-3. Run: `openspec status --change "assignment-2b-rag-pipeline"`
-4. Continue with Group 2 — add chunking cells to `assignment_2b_rag_pipeline.ipynb`
+2. `cd /Users/dvksuman/Desktop/Semester3/LLM/ASSIGNMENT2`
+3. Continue with Group 3 — add FAISS embedding cells to `assignment_2b_rag_pipeline.ipynb`
