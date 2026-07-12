@@ -73,7 +73,7 @@ Tasks 3.1–3.4 in `openspec/changes/assignment-2b-rag-pipeline/tasks.md`:
 
 ## Workflow Rules (from CLAUDE.md)
 1. Mark task `[~]` before editing notebook
-2. Complete all 7 checklist steps after each group
+2. Complete all 8 checklist steps after each group (see CLAUDE.md) — includes SESSION_HANDOFF update
 3. Cell outputs left empty — will be populated in Step 7.1 final run
 4. `git push origin master` after every commit
 
