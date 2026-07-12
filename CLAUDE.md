@@ -7,7 +7,7 @@ Do NOT write or edit notebook code unless it implements a task marked `[ ]` or `
 
 ## Workflow
 
-1. Before starting a new task group, check for blockers or design questions
+1. **Before starting any new task group: run `/opsx:explore` first.** Think through best practices, pitfalls, and tradeoffs. No coding until explore is complete.
 2. Mark task `[~]` (in-progress) before editing any file
 3. Complete the 7-step checklist before moving to the next task (see below)
 
