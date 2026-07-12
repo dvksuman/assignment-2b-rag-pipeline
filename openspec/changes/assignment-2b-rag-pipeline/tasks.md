@@ -1,9 +1,9 @@
 ## 1. Environment & Corpus Setup
 
-- [ ] 1.1 Install dependencies: `sentence-transformers`, `faiss-cpu`, `rank_bm25`, `pdfplumber`, `pandas`, `numpy`, `transformers`
-- [ ] 1.2 Unzip `ASSIGNMENT1stuff/domain_corpus (2).zip` → 5 financial `.txt` files (Berkshire, NVIDIA, Tesla, Amazon, Apple, ~1.7MB total)
-- [ ] 1.3 Re-download the original 5 financial annual report PDFs (same URLs as Assignment 1B notebook) for tabular extraction in Part C
-- [ ] 1.4 Load all `.txt` files into a single corpus string; log total word count
+- [x] 1.1 Install dependencies: `sentence-transformers`, `faiss-cpu`, `rank_bm25`, `pdfplumber`, `pandas`, `numpy`, `transformers`
+- [x] 1.2 Unzip `ASSIGNMENT1stuff/domain_corpus (2).zip` → 5 financial `.txt` files (Berkshire, NVIDIA, Tesla, Amazon, Apple, ~1.7MB total)
+- [x] 1.3 Re-download the original 5 financial annual report PDFs (same URLs as Assignment 1B notebook) for tabular extraction in Part C
+- [x] 1.4 Load all `.txt` files into a single corpus string; log total word count
 
 ## 2. Part A — Chunking Strategies
 

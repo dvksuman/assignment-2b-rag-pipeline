@@ -30,3 +30,17 @@ jupyter nbconvert --to notebook --execute assignment_2b_rag_pipeline.ipynb --out
 ---
 
 <!-- Commands will be appended below as implementation progresses -->
+
+## Corpus word count (quick check)
+```python
+import os
+for f in sorted(os.listdir('corpus')):
+    if f.endswith('.txt'):
+        wc = len(open(f'corpus/{f}').read().split())
+        print(f'{f}: {wc:,} words')
+```
+
+## Check installed packages
+```bash
+pip show sentence-transformers faiss-cpu rank_bm25 pdfplumber transformers | grep -E "^Name|^Version"
+```
