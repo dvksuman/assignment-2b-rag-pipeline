@@ -11,7 +11,7 @@ Do NOT write or edit notebook code unless it implements a task marked `[ ]` or `
 2. Mark task `[~]` (in-progress) before editing any file
 3. Complete the 7-step checklist before moving to the next task (see below)
 
-## 7-Step Task Completion Checklist
+## 8-Step Task Completion Checklist
 
 Before marking any task `[x]` and moving on:
 
@@ -20,6 +20,7 @@ Before marking any task `[x]` and moving on:
 - [ ] Append any non-trivial fix to `LESSONS_LEARNED.md`
 - [ ] Append any useful command to `TOI.md`
 - [ ] Record any design decision made to `design.md`
+- [ ] Update `SESSION_HANDOFF.md` — progress count, what's done, what's next
 - [ ] Git commit with a clear message
 - [ ] Verify commit landed (`git log --oneline -1`)
 
