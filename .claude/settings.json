@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/dvksuman/Desktop/Semester3/LLM/ASSIGNMENT2/.claude/hooks/pre_tool_gate.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/dvksuman/Desktop/Semester3/LLM/ASSIGNMENT2/.claude/hooks/post_task_checklist.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
