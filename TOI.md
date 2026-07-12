@@ -40,6 +40,28 @@ for f in sorted(os.listdir('corpus')):
         print(f'{f}: {wc:,} words')
 ```
 
+## Run notebook cells via anaconda python (when system python lacks packages)
+```bash
+/opt/anaconda3/bin/python3 your_script.py
+/opt/anaconda3/bin/jupyter execute notebook.ipynb
+```
+
+## Download NLTK punkt tokenizer data
+```python
+import nltk
+nltk.download('punkt_tab', quiet=True)  # newer NLTK
+nltk.download('punkt', quiet=True)       # fallback
+```
+
+## Verify chunking metrics quickly (outside notebook)
+```python
+sizes = [len(c['text'].split()) for c in chunks]
+import numpy as np
+print(np.mean(sizes), np.std(sizes))
+ENDINGS = ('.', '!', '?', '"', ')')
+broken_pct = 100 * sum(1 for c in chunks if not c['text'].rstrip().endswith(ENDINGS)) / len(chunks)
+```
+
 ## Check installed packages
 ```bash
 pip show sentence-transformers faiss-cpu rank_bm25 pdfplumber transformers | grep -E "^Name|^Version"

@@ -48,6 +48,15 @@ All parts (A, B, C) in one `.ipynb` with clear section headers. **Why**: Assignm
 ### D9: PDF download fallback strategy
 If any of the 5 annual report PDFs fail to download (large file size, network timeout, or URL change), the notebook gracefully logs the failure and continues. For Part C2 tabular extraction, we prioritise NVIDIA, Apple, Amazon (clean grid-based tables). Skip Berkshire (huge PDF, narrative-heavy). The assignment explicitly permits using alternate finance PDFs as fallback. **Why**: Robustness over completeness — a failed download should not block the rest of the notebook.
 
+### D10: Chunking granularity — per-company, not concatenated
+All chunkers operate on each company's text separately, then merge into a flat list with `company` metadata tag. **Why**: Concatenating all 5 files before chunking creates chunks that straddle company boundaries (Apple data mixed with Amazon data in one chunk), contaminating both embeddings and retrieval results.
+
+### D11: Selected chunking strategy for Part B — Semantic
+Semantic chunking selected over fixed-size and sliding window. Actual measured metrics: Fixed=94.9% broken, Sliding=94.9% broken, Semantic=7.6% broken. Semantic has higher std dev (40.1w vs 7.3w) but produces coherent chunks — better for embedding quality. **Why**: Broken sentence rates in financial text are much higher than general prose (~95% vs expected ~65%) because financial sentences are long relative to 200-word chunks.
+
+### D12: Broken sentence % definition
+A chunk is "broken" if it does not end with `.`, `!`, `?`, `"`, or `)`. Checked on the last character after `rstrip()`. Start-of-chunk detection (lowercase first word) was rejected as unreliable in financial text (table values, numbers, ticker symbols all start without capitals).
+
 ## Risks / Trade-offs
 
 - [Small corpus → low chunk count] → Mitigation: Use at least 5–10 documents totalling >10K words to get meaningful chunking statistics

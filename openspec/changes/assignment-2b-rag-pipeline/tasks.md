@@ -7,12 +7,12 @@
 
 ## 2. Part A — Chunking Strategies
 
-- [ ] 2.1 Implement `fixed_size_chunker(text, max_words=200)` — splits by word count, no overlap
-- [ ] 2.2 Implement `sliding_window_chunker(text, max_words=200, overlap=20)` — sliding window with 10% overlap
-- [ ] 2.3 Implement `semantic_chunker(text, max_words=200)` — sentence-boundary-aware, use `nltk.sent_tokenize` or regex
-- [ ] 2.4 Compute quality metrics for each strategy: total chunks, avg size (words), std dev size, broken sentences %
-- [ ] 2.5 Display metrics comparison table (Step A2 table from assignment)
-- [ ] 2.6 Select best chunking strategy for Part B (justify choice in a markdown cell)
+- [x] 2.1 Implement `fixed_size_chunker(text, max_words=200)` — splits by word count, no overlap
+- [x] 2.2 Implement `sliding_window_chunker(text, max_words=200, overlap=20)` — sliding window with 10% overlap
+- [x] 2.3 Implement `semantic_chunker(text, max_words=200)` — sentence-boundary-aware, use `nltk.sent_tokenize` or regex
+- [x] 2.4 Compute quality metrics for each strategy: total chunks, avg size (words), std dev size, broken sentences %
+- [x] 2.5 Display metrics comparison table (Step A2 table from assignment)
+- [x] 2.6 Select best chunking strategy for Part B (justify choice in a markdown cell)
 
 ## 3. Part B — Dense Retrieval (FAISS)
 

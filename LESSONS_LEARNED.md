@@ -12,6 +12,18 @@ This file is auto-updated during implementation. Each entry documents a problem 
 **Fix:** Conflict is non-fatal — all required packages (sentence-transformers, faiss-cpu, etc.) install successfully. The streamlit conflict does not affect this assignment.  
 **Lesson:** Always check that the conflict is with an unused package before spending time resolving it.
 
+## LL-03 — Broken sentence % much higher than expected for fixed/sliding chunkers
+**Problem:** Fixed-size and sliding window both showed ~95% broken sentence rate (expected ~65%).  
+**Root cause:** Financial annual report text is dense prose — long sentences with few terminal punctuation marks per 200 words. Most 200-word windows don't end on a `.`.  
+**Fix:** No code fix needed. The metric is correct. Acknowledge in analysis: financial text has longer sentences than general prose, making arbitrary cuts even more harmful.  
+**Lesson:** Benchmark expectations from domain characteristics, not general text assumptions.
+
+## LL-04 — `jupyter execute` runs but does not save cell outputs to notebook
+**Problem:** `jupyter execute notebook.ipynb` returned RC=0 but all cells showed `outputs=[]`.  
+**Root cause:** Unknown nbclient/nbconvert interaction — outputs not flushed to file.  
+**Fix:** Verified correctness by re-running the core Python logic directly via `/opt/anaconda3/bin/python3`. Cell outputs will be populated when the notebook is opened and run in Jupyter.  
+**Lesson:** Use `jupyter nbconvert --to notebook --execute --inplace` for output saving, but watch for permission errors on `/usr/local/share/jupyter/conf.json`.
+
 ## LL-02 — Tesla corpus is very small (5,554 words)
 **Problem:** Tesla file is ~16× smaller than NVIDIA (92K words). This may skew chunking metrics.  
 **Root cause:** Assignment 1B used a Tesla quarterly update PDF, not a full annual report.  
