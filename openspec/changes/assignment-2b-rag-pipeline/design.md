@@ -2,7 +2,7 @@
 
 Assignment 2B builds a full RAG pipeline on a domain text corpus. The pipeline progresses through three phases: chunking → retrieval → reranking + tabular RAG. All work is delivered as a single self-contained Jupyter notebook with HTML export, plus a `tables_chunks.csv`. No existing codebase exists — this is a greenfield notebook.
 
-Domain corpus: a collection of domain `.txt` files (to be selected/created at implementation time, e.g., Wikipedia articles on a specific topic or any publicly available text corpus).
+Domain corpus: 5 financial annual report `.txt` files from Assignment 1A — Apple, Amazon, NVIDIA, Tesla, Berkshire Hathaway — totalling 222,925 words. NVIDIA dominates at 92,722 words; Tesla is smallest at 5,554 words (quarterly update, not full annual report).
 
 ## Goals / Non-Goals
 
@@ -44,6 +44,9 @@ Use publicly available domain text (e.g., AI/ML Wikipedia dumps or any domain wi
 
 ### D8: Single notebook architecture
 All parts (A, B, C) in one `.ipynb` with clear section headers. **Why**: Assignment requires `.ipynb` + `.html` deliverable — one file is easier to submit and verify outputs.
+
+### D9: PDF download fallback strategy
+If any of the 5 annual report PDFs fail to download (large file size, network timeout, or URL change), the notebook gracefully logs the failure and continues. For Part C2 tabular extraction, we prioritise NVIDIA, Apple, Amazon (clean grid-based tables). Skip Berkshire (huge PDF, narrative-heavy). The assignment explicitly permits using alternate finance PDFs as fallback. **Why**: Robustness over completeness — a failed download should not block the rest of the notebook.
 
 ## Risks / Trade-offs
 
