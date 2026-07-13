@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
 **Date:** 2026-07-12  
-**Next action:** Start Group 3 — Part B: Dense Retrieval (FAISS)
+**Next action:** Start Group 4 — Part B: Sparse (BM25) + Hybrid (RRF)
 
 ---
 
@@ -15,7 +15,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 
 ---
 
-## Progress: 10/34 tasks complete
+## Progress: 14/34 tasks complete
 
 ### ✅ Group 1 — Done
 - Dependencies installed (sentence-transformers, faiss-cpu, rank_bm25, pdfplumber, transformers, nltk)
@@ -31,14 +31,15 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 - Best strategy justification written (semantic wins on broken sentence %)
 - Full inline comments and justifications added to all cells
 
-### ⏳ Group 3 — Next (Part B: Dense Retrieval)
-Tasks 3.1–3.4 in `openspec/changes/assignment-2b-rag-pipeline/tasks.md`:
-- Load `all-MiniLM-L6-v2`, embed all 1,311 semantic chunks, L2-normalise
-- Build FAISS IndexFlatIP, time the index build
-- Define 10 domain queries, run dense retrieval (top-5), record per-query latency
-- Manually score top-1 chunk per query on 1–3 scale, compute avg relevance
+### ✅ Group 3 — Done (Part B: Dense Retrieval)
+- Embedded 1,311 semantic chunks with all-MiniLM-L6-v2 (384-dim, batch_size=32)
+- Built FAISS IndexFlatIP with L2-normalised vectors (cosine similarity)
+- Defined 10 domain queries (NVIDIA×3, Apple×2, Amazon×2, Berkshire×2, Tesla×1)
+- Dense retrieval top-5 per query with per-query latency logged
+- Manual relevance scoring (3=best) and avg relevance computed for Table B2
+- `chunks_index` built; `tables_index` deferred to Group 6 (separate index design)
 
-### ⏳ Group 4 — Sparse (BM25) + Hybrid (RRF)
+### ⏳ Group 4 — Next (Sparse BM25 + Hybrid RRF)
 ### ⏳ Group 5 — Cross-Encoder Reranking
 ### ⏳ Group 6 — Tabular RAG
 ### ⏳ Group 7 — Finalisation & Submission

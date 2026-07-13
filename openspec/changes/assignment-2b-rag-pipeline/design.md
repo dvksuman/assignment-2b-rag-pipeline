@@ -57,6 +57,17 @@ Semantic chunking selected over fixed-size and sliding window. Actual measured m
 ### D12: Broken sentence % definition
 A chunk is "broken" if it does not end with `.`, `!`, `?`, `"`, or `)`. Checked on the last character after `rstrip()`. Start-of-chunk detection (lowercase first word) was rejected as unreliable in financial text (table values, numbers, ticker symbols all start without capitals).
 
+### D13: Relevance scale — 3=best
+1–3 manual relevance scoring used for Table B2. Scale: 3=highly relevant (directly answers query), 2=partially relevant (right topic, not the answer), 1=not relevant. Higher = better, so avg relevance reads intuitively. Standard IR convention (consistent with TREC relevance grades).
+
+### D14: Separate chunks_index and tables_index
+`chunks_index` (FAISS IndexFlatIP) built in Group 3 for text chunks only. `tables_index` will be built separately in Group 6 for serialised table rows. Rationale: clean separation allows side-by-side comparison for tabular RAG analysis (task 6.6), and avoids table rows diluting text-chunk retrieval benchmarks in Groups 3–5.
+
+### D15: Timing scope — embed time vs index build time logged separately
+`embed_time_ms` = time to encode all 1,311 chunks (seconds scale).
+`index_build_ms` = time for `index.add()` only (ms scale).
+Reported distinctly because the assignment asks to "time the index build", not the embedding step.
+
 ## Risks / Trade-offs
 
 - [Small corpus → low chunk count] → Mitigation: Use at least 5–10 documents totalling >10K words to get meaningful chunking statistics

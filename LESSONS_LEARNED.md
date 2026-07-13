@@ -24,6 +24,18 @@ This file is auto-updated during implementation. Each entry documents a problem 
 **Fix:** Verified correctness by re-running the core Python logic directly via `/opt/anaconda3/bin/python3`. Cell outputs will be populated when the notebook is opened and run in Jupyter.  
 **Lesson:** Use `jupyter nbconvert --to notebook --execute --inplace` for output saving, but watch for permission errors on `/usr/local/share/jupyter/conf.json`.
 
+## LL-05 — L2-normalisation must be applied to both corpus AND query vectors
+**Problem:** IndexFlatIP gives cosine similarity only if vectors are unit-length. Normalising corpus but forgetting query vectors gives wrong ranking silently.  
+**Root cause:** Normalisation is a two-step responsibility: once at index-build time, once at each query.  
+**Fix:** Call `faiss.normalize_L2()` in both Step 3.1 (corpus) and inside `dense_retrieve()` (query).  
+**Lesson:** Any time you L2-normalise at index build, normalise queries too — test by checking norms equal 1.0.
+
+## LL-06 — Separate embedding time from index build time in benchmarks
+**Problem:** Conflating corpus embedding time (~30s) with FAISS index build time (~ms) gives misleading latency numbers.  
+**Root cause:** The assignment asks to "time the index build" specifically — `index.add()` not `encode()`.  
+**Fix:** Use two separate `time.perf_counter()` blocks; log both values distinctly.  
+**Lesson:** Always scope timing blocks to exactly the operation being benchmarked.
+
 ## LL-02 — Tesla corpus is very small (5,554 words)
 **Problem:** Tesla file is ~16× smaller than NVIDIA (92K words). This may skew chunking metrics.  
 **Root cause:** Assignment 1B used a Tesla quarterly update PDF, not a full annual report.  

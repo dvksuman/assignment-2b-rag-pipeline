@@ -16,10 +16,10 @@
 
 ## 3. Part B — Dense Retrieval (FAISS)
 
-- [ ] 3.1 Load `all-MiniLM-L6-v2` from `sentence-transformers`; embed all chunks; L2-normalise vectors
-- [ ] 3.2 Build FAISS `IndexFlatIP`; time the index build; log embedding config (model, dims, metric, batch size)
-- [ ] 3.3 Define 10 domain queries; run each through dense retrieval (top-5); record per-query latency (ms)
-- [ ] 3.4 Manually score top-1 chunk per query on 1–3 scale; compute average top-1 relevance
+- [x] 3.1 Load `all-MiniLM-L6-v2` from `sentence-transformers`; embed all chunks; L2-normalise vectors
+- [x] 3.2 Build FAISS `IndexFlatIP`; time the index build; log embedding config (model, dims, metric, batch size)
+- [x] 3.3 Define 10 domain queries; run each through dense retrieval (top-5); record per-query latency (ms)
+- [x] 3.4 Manually score top-1 chunk per query on 1–3 scale; compute average top-1 relevance
 
 ## 4. Part B — Sparse & Hybrid Retrieval
 

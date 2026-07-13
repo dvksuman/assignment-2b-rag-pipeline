@@ -62,6 +62,30 @@ ENDINGS = ('.', '!', '?', '"', ')')
 broken_pct = 100 * sum(1 for c in chunks if not c['text'].rstrip().endswith(ENDINGS)) / len(chunks)
 ```
 
+## FAISS dense retrieval — quick pattern
+```python
+import faiss
+from sentence_transformers import SentenceTransformer
+
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+embeddings = embedder.encode(texts, batch_size=32, convert_to_numpy=True).astype('float32')
+faiss.normalize_L2(embeddings)                  # normalise corpus
+
+index = faiss.IndexFlatIP(384)
+index.add(embeddings)                           # build index
+
+q = embedder.encode([query], convert_to_numpy=True).astype('float32')
+faiss.normalize_L2(q)                           # normalise query too
+scores, indices = index.search(q, k=5)          # returns top-5
+```
+
+## Verify L2 normalisation
+```python
+import numpy as np
+norms = np.linalg.norm(embeddings[:5], axis=1)
+print(norms)   # should all be ~1.0
+```
+
 ## Check installed packages
 ```bash
 pip show sentence-transformers faiss-cpu rank_bm25 pdfplumber transformers | grep -E "^Name|^Version"
