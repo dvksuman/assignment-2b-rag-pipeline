@@ -41,3 +41,9 @@ This file is auto-updated during implementation. Each entry documents a problem 
 **Root cause:** Assignment 1B used a Tesla quarterly update PDF, not a full annual report.  
 **Fix:** No fix needed — note this disparity in the chunking analysis. The small size means Tesla contributes only ~27 fixed-size chunks.  
 **Lesson:** Always check per-document word counts before assuming uniform corpus distribution.
+
+## 2026-07-13 — Local OOM during SentenceTransformer embedding
+- **Problem**: Kernel dies immediately when loading `all-MiniLM-L6-v2` — only 0.1GB RAM free on local Mac
+- **Fix**: Move to Google Colab (12GB RAM); upload notebook + corpus zip via Files sidebar
+- **Also found**: `sentence-transformers 5.x` incompatible with `transformers 4.57` — pin to `sentence-transformers==2.7.0` + `transformers==4.40.2` + `protobuf==3.20.3`
+- **Also found**: Add `os.environ["TOKENIZERS_PARALLELISM"] = "false"` before embedding to prevent tokenizer deadlock warnings

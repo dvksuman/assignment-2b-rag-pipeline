@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
-**Date:** 2026-07-12  
-**Next action:** Start Group 4 — Part B: Sparse (BM25) + Hybrid (RRF)
+**Date:** 2026-07-13  
+**Next action:** Move to Google Colab — local machine runs OOM during embedding (only 0.1GB free RAM)
 
 ---
 
@@ -82,5 +82,12 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 
 ## To Resume in New Session
 1. Open this file first
-2. `cd /Users/dvksuman/Desktop/Semester3/LLM/ASSIGNMENT2`
-3. Continue with Group 3 — add FAISS embedding cells to `assignment_2b_rag_pipeline.ipynb`
+2. Go to colab.research.google.com
+3. Upload `assignment_2b_rag_pipeline.ipynb`
+4. Upload `ASSIGNMENT1stuff/domain_corpus (2).zip` via Colab Files sidebar
+5. Run all cells top to bottom — Groups 1–3 first, then continue with Group 4
+
+## Environment Issue (resolved by moving to Colab)
+- Local Mac has only 0.1GB free RAM — kernel crashes during SentenceTransformer embedding
+- `sentence-transformers==2.7.0` + `transformers==4.40.2` + `protobuf==3.20.3` are the pinned versions that fix the import error
+- Add `os.environ["TOKENIZERS_PARALLELISM"] = "false"` and `os.environ["HF_HUB_OFFLINE"] = "1"` before embedding cell
