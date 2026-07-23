@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
 **Date:** 2026-07-22
-**Next action:** Start Group 7 — Finalisation (run all cells, export HTML, verify tables_chunks.csv, check all assignment tables filled)
+**Next action:** Group 7 — Finalisation (run all cells top-to-bottom, export HTML, verify tables_chunks.csv, check all assignment tables filled)
 
 ---
 
@@ -25,7 +25,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 | Group 4 — BM25 + Hybrid | ✅ Done | BM25=2.00/3.0, Hybrid RRF=2.40/3.0 |
 | Group 5 — Cross-Encoder | ✅ Done | Rank-change rate 20%, avg rerank latency 104.74ms |
 | Group 6 — Tabular RAG | ✅ Done | 94 tables, 550 rows, index 1311→1861, TQ2/TQ3 top-4 all table hits |
-| Group 7 — Finalisation | ⏳ Pending | |
+| Group 7 — Finalisation | ⏳ Next | |
 
 ---
 
@@ -60,6 +60,18 @@ QUERIES = [
 ]
 ```
 
+## Group 6 Tabular Query Results
+```
+TQ1: "What was NVIDIA's data center revenue in 2024 versus 2023?"
+  → Rank 1 TEXT (0.6875), Rank 2 TABLE (0.6773) — mixed case (figure in prose too)
+
+TQ2: "What are Apple's total net sales broken down by product category?"
+  → Rank 1–4 all TABLE hits (0.72–0.78) — pure tabular win
+
+TQ3: "What is Amazon's operating income by segment?"
+  → Rank 1–4 all TABLE hits (0.63–0.72) — pure tabular win
+```
+
 ---
 
 ## How to Resume in Colab
@@ -67,16 +79,18 @@ QUERIES = [
 1. Go to colab.research.google.com
 2. Upload `assignment_2b_rag_pipeline.ipynb`
 3. Upload `ASSIGNMENT1stuff/domain_corpus (2).zip` via Files sidebar
-4. Run all cells top to bottom (Groups 1–4 re-run fine)
-5. Then paste new Group 5 cells from Claude
+4. Run all cells top to bottom (Groups 1–6 re-run fine)
+5. Group 7 = run all → export HTML → download both files for submission
 
-## Key Variables in Notebook (must exist before Group 5)
+## Key Variables in Notebook (after full run)
 - `chunks_semantic` — list of 1,311 chunk dicts with 'text' and 'company'
 - `chunk_embeddings` — numpy array (1311, 384) L2-normalised
-- `chunks_index` — FAISS IndexFlatIP with 1,311 vectors
+- `chunks_index` — FAISS IndexFlatIP with 1,861 vectors (1311 text + 550 table)
 - `embedder` — SentenceTransformer('all-MiniLM-L6-v2')
 - `bm25` — BM25Okapi index over tokenised chunks
-- `dense_results`, `bm25_results`, `hybrid_results` — list of dicts per query
+- `table_chunks` — list of 550 dicts with 'text', 'company', 'source'
+- `table_embeddings` — numpy array (550, 384) L2-normalised
+- `TEXT_CHUNK_COUNT` — 1311 (boundary between text and table in FAISS index)
 - `DENSE_RELEVANCE`, `BM25_RELEVANCE`, `HYBRID_RELEVANCE` — score lists
 - `df_comparison` — Table B2 DataFrame
 
@@ -92,10 +106,11 @@ QUERIES = [
 - Hybrid: RRF with k=60, union of Dense top-5 + BM25 top-5
 - Cross-encoder (Group 5): `cross-encoder/ms-marco-MiniLM-L-6-v2`
 - Table extraction (Group 6): pdfplumber (NVIDIA, Apple, Amazon — skip Berkshire)
+- Table index: extended chunks_index in-place; table hits detected by idx >= TEXT_CHUNK_COUNT
 
-## What Group 5 Needs to Do
-- Load `cross-encoder/ms-marco-MiniLM-L-6-v2`
-- For each of 10 queries: take top-3 from best first-stage retriever (Dense) → rerank with cross-encoder
-- Record reranking latency
-- Compute rank-change rate (% queries where top-1 changed after reranking)
-- Manually verify 5 queries: show pre/post top-1 chunk
+## Submission Checklist (Group 7)
+- [ ] All cells run top-to-bottom with no errors
+- [ ] `assignment_2b_rag_pipeline.ipynb` — all output cells populated
+- [ ] `assignment_2b_rag_pipeline.html` — exported via jupyter nbconvert
+- [ ] `tables_chunks.csv` — 550 rows, columns: text, company, source
+- [ ] Assignment tables filled: A2 (chunking), B2 (retrieval comparison), C1 (reranking metrics), C2 (tabular demo)
