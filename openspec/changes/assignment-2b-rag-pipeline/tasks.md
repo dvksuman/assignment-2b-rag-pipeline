@@ -23,11 +23,11 @@
 
 ## 4. Part B — Sparse & Hybrid Retrieval
 
-- [ ] 4.1 Build BM25Okapi index over whitespace-tokenised chunks using `rank_bm25`
-- [ ] 4.2 Run same 10 queries through BM25 (top-5); record per-query latency; score top-1 relevance
-- [ ] 4.3 Implement RRF fusion (`k=60`): merge dense and BM25 top-5 ranked lists; re-rank by RRF score
-- [ ] 4.4 Run same 10 queries through hybrid retrieval (top-5); record total latency; score top-1 relevance
-- [ ] 4.5 Compute top-3 coverage for each method; fill benchmark comparison table (Step B2 table)
+- [x] 4.1 Build BM25Okapi index over whitespace-tokenised chunks using `rank_bm25`
+- [x] 4.2 Run same 10 queries through BM25 (top-5); record per-query latency; score top-1 relevance
+- [x] 4.3 Implement RRF fusion (`k=60`): merge dense and BM25 top-5 ranked lists; re-rank by RRF score
+- [x] 4.4 Run same 10 queries through hybrid retrieval (top-5); record total latency; score top-1 relevance
+- [x] 4.5 Compute top-3 coverage for each method; fill benchmark comparison table (Step B2 table)
 
 ## 5. Part C — Cross-Encoder Reranking
 

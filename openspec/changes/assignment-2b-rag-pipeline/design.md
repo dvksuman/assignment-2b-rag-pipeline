@@ -75,3 +75,14 @@ Reported distinctly because the assignment asks to "time the index build", not t
 - [Cross-encoder is slow on CPU] → Mitigation: Only rerank top-3 candidates per query; note latency in benchmark table
 - [PDF tables may be irregular] → Mitigation: Filter out tables with <2 columns or <2 rows; handle missing cells with empty string
 - [Manual relevance scoring is subjective] → Mitigation: Define 1–3 scale clearly in notebook; be consistent across queries
+
+### D16: BM25 tokenisation — lowercase + whitespace split
+Both corpus and query tokenised identically: `text.lower().split()`. No stop word removal — BM25Okapi handles low-IDF words implicitly via its formula.
+
+### D17: RRF k=60 confirmed
+Standard k=60 used as per assignment spec. Fusion takes union of Dense top-5 and BM25 top-5 candidate pools. Missing docs contribute 0.
+
+### D18: Manual relevance scores — Group 4
+Dense: [3,3,3,2,2,3,3,3,3,2] avg=2.70
+BM25:  [3,1,2,3,1,2,1,2,3,2] avg=2.00
+Hybrid:[3,2,2,2,1,3,3,2,3,3] avg=2.40

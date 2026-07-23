@@ -90,3 +90,14 @@ print(norms)   # should all be ~1.0
 ```bash
 pip show sentence-transformers faiss-cpu rank_bm25 pdfplumber transformers | grep -E "^Name|^Version"
 ```
+
+## BM25 useful commands
+# Build BM25 index
+bm25 = BM25Okapi([text.lower().split() for text in corpus])
+
+# Score all chunks against a query
+scores = bm25.get_scores(query.lower().split())
+top5 = np.argsort(scores)[::-1][:5]
+
+# Vocab size
+len(bm25.idf)

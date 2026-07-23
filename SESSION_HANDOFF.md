@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
-**Date:** 2026-07-13  
-**Next action:** Move to Google Colab — local machine runs OOM during embedding (only 0.1GB free RAM)
+**Date:** 2026-07-22  
+**Next action:** Start Group 5 — Cross-Encoder Reranking
 
 ---
 
@@ -15,7 +15,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 
 ---
 
-## Progress: 14/34 tasks complete
+## Progress: 19/34 tasks complete
 
 ### ✅ Group 1 — Done
 - Dependencies installed (sentence-transformers, faiss-cpu, rank_bm25, pdfplumber, transformers, nltk)
@@ -39,7 +39,11 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 - Manual relevance scoring (3=best) and avg relevance computed for Table B2
 - `chunks_index` built; `tables_index` deferred to Group 6 (separate index design)
 
-### ⏳ Group 4 — Next (Sparse BM25 + Hybrid RRF)
+### ✅ Group 4 — Done (Sparse BM25 + Hybrid RRF)
+- BM25 index: 1,311 chunks, 26,432 vocab, 74ms build
+- BM25 avg relevance: 2.00/3.0, avg latency: 5.01ms
+- Hybrid RRF (k=60) avg relevance: 2.40/3.0, avg latency: 21.52ms
+- Table B2 complete: Dense=2.70, BM25=2.00, Hybrid=2.40
 ### ⏳ Group 5 — Cross-Encoder Reranking
 ### ⏳ Group 6 — Tabular RAG
 ### ⏳ Group 7 — Finalisation & Submission

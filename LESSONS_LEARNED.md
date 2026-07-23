@@ -47,3 +47,11 @@ This file is auto-updated during implementation. Each entry documents a problem 
 - **Fix**: Move to Google Colab (12GB RAM); upload notebook + corpus zip via Files sidebar
 - **Also found**: `sentence-transformers 5.x` incompatible with `transformers 4.57` — pin to `sentence-transformers==2.7.0` + `transformers==4.40.2` + `protobuf==3.20.3`
 - **Also found**: Add `os.environ["TOKENIZERS_PARALLELISM"] = "false"` before embedding to prevent tokenizer deadlock warnings
+
+## 2026-07-22 — Group 4: BM25 + Hybrid RRF Results
+- BM25 tokenisation must be lowercase + whitespace split — symmetric with query tokenisation
+- BM25 failed Q07 (Apple supply chain) — retrieved NVIDIA instead; no semantic understanding
+- Hybrid RRF fixed Q07 — Dense correctly ranked Apple chunk high, RRF elevated it
+- Dense beats Hybrid on relevance (2.70 vs 2.40) — RRF helps BM25 failures but can also dilute Dense wins
+- BM25 is 4x faster (5ms vs 21ms) — useful when speed matters more than accuracy
+- Top-3 coverage: Dense=10/10, Hybrid=9/10, BM25=7/10
