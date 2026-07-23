@@ -1,15 +1,15 @@
-# Assignment 2B — RAG Pipeline: Project Rules
+# Annual Report RAG Pipeline: Project Rules
 
 ## Core Rule: Everything Goes Through OpenSpec
 
 Do NOT write or edit notebook code unless it implements a task marked `[ ]` or `[~]` in
-`openspec/changes/assignment-2b-rag-pipeline/tasks.md`. No undocumented quick fixes.
+`openspec/changes/annual-report-rag/tasks.md`. No undocumented quick fixes.
 
 ## Workflow
 
 1. **Before starting any new task group: run `/opsx:explore` first.** Think through best practices, pitfalls, and tradeoffs. No coding until explore is complete.
 2. Mark task `[~]` (in-progress) before editing any file
-3. Complete the 7-step checklist before moving to the next task (see below)
+3. Complete the 8-step checklist before moving to the next task (see below)
 
 ## 8-Step Task Completion Checklist
 
@@ -34,11 +34,9 @@ Before marking any task `[x]` and moving on:
 
 - Every significant code block in the notebook must have a plain English markdown cell above it explaining what it does and why
 - All output cells must be populated before submission (run all cells top to bottom)
-- Final notebook must export cleanly to HTML
 
-## Submission Checklist
+## Deliverables
 
-- [ ] `assignment_2b_rag_pipeline.ipynb` — all cells executed, outputs visible
-- [ ] `assignment_2b_rag_pipeline.html` — exported via `jupyter nbconvert`
-- [ ] `tables_chunks.csv` — serialised table rows present
-- [ ] All assignment tables filled (A2, B2, C1 metrics, C2 demo)
+- `rag_pipeline_annual_reports.ipynb` — all cells executed, outputs visible
+- `tables_chunks.csv` — serialised table rows present
+- All pipeline stages covered: chunking, dense retrieval, BM25, hybrid RRF, cross-encoder reranking, tabular RAG

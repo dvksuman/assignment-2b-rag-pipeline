@@ -1,6 +1,6 @@
 ## Context
 
-Assignment 2B builds a full RAG pipeline on a domain text corpus. The pipeline progresses through three phases: chunking → retrieval → reranking + tabular RAG. All work is delivered as a single self-contained Jupyter notebook with HTML export, plus a `tables_chunks.csv`. No existing codebase exists — this is a greenfield notebook.
+A full RAG pipeline on a financial annual reports corpus. The pipeline progresses through three phases: chunking → retrieval → reranking + tabular RAG. All work is delivered as a single self-contained Jupyter notebook plus a `tables_chunks.csv`.
 
 Domain corpus: 5 financial annual report `.txt` files from Assignment 1A — Apple, Amazon, NVIDIA, Tesla, Berkshire Hathaway — totalling 222,925 words. NVIDIA dominates at 92,722 words; Tesla is smallest at 5,554 words (quarterly update, not full annual report).
 

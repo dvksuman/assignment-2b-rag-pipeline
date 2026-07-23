@@ -1,6 +1,6 @@
 ## Why
 
-Assignment 2B requires building a production-grade RAG pipeline on a domain corpus, progressing from document chunking through dense/sparse/hybrid retrieval to cross-encoder reranking and tabular RAG. This is a graded 20-mark assignment for the LLM4GenAI course (Semester 3). The corpus is the cleaned financial annual reports corpus from Assignment 1A: 5 `.txt` files (Berkshire Hathaway, NVIDIA, Tesla, Amazon, Apple) totalling ~1.7MB, located in `ASSIGNMENT1stuff/domain_corpus (2).zip`. The original PDFs were downloaded in Assignment 1B and can be re-sourced for tabular extraction.
+Build a production-grade RAG pipeline on a financial annual reports corpus, progressing from document chunking through dense/sparse/hybrid retrieval to cross-encoder reranking and tabular RAG. The corpus consists of 5 `.txt` files (Berkshire Hathaway, NVIDIA, Tesla, Amazon, Apple) totalling ~1.7MB. Original PDFs are used for tabular extraction.
 
 ## What Changes
 
