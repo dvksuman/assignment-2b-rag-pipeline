@@ -39,12 +39,12 @@
 
 ## 6. Part C — Tabular RAG
 
-- [~] 6.1 Use `pdfplumber` to extract tables from the 5 financial annual report PDFs; filter to tables with ≥2 cols and ≥2 rows; save each as a CSV (financial PDFs are rich in tables: income statements, balance sheets, segment data)
-- [~] 6.2 Serialise each table row as `Col1: val1 | Col2: val2 | ...` text strings
-- [~] 6.3 Save all serialised rows to `tables_chunks.csv`
-- [~] 6.4 Embed serialised rows with same `all-MiniLM-L6-v2` embedder; add to existing FAISS index (or new mixed index)
-- [~] 6.5 Run 3 structured tabular queries; show top retrieved results and highlight table-row hits
-- [~] 6.6 Write 100-word markdown analysis: when does tabular RAG outperform text-chunk RAG, with concrete example
+- [x] 6.1 Use `pdfplumber` to extract tables from the 5 financial annual report PDFs; filter to tables with ≥2 cols and ≥2 rows; save each as a CSV (financial PDFs are rich in tables: income statements, balance sheets, segment data)
+- [x] 6.2 Serialise each table row as `Col1: val1 | Col2: val2 | ...` text strings
+- [x] 6.3 Save all serialised rows to `tables_chunks.csv`
+- [x] 6.4 Embed serialised rows with same `all-MiniLM-L6-v2` embedder; add to existing FAISS index (or new mixed index)
+- [x] 6.5 Run 3 structured tabular queries; show top retrieved results and highlight table-row hits
+- [x] 6.6 Write 100-word markdown analysis: when does tabular RAG outperform text-chunk RAG, with concrete example
 
 ## 7. Finalisation & Submission
 
