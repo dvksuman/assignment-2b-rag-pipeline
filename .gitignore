@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+*.html
+
+# Generated / binary artifacts
+chunk_embeddings.npy
+chunks_semantic.json
+
+# Downloaded data
+domain_pdfs/
+
+# Assignment leftovers
+ASSIGNMENT1stuff/
+Assignment-2B-RAGPipeline.pdf
+
+# Duplicate files
+"tables_chunks (1).csv"
+
+# macOS
+.DS_Store
+
+# Session notes
+.claude_teaching_notes.md
+SESSION_HANDOFF.md
