@@ -1,7 +1,7 @@
 # Session Handoff — Assignment 2B RAG Pipeline
 
 **Date:** 2026-07-22
-**Next action:** Group 7 — Finalisation (run all cells top-to-bottom, export HTML, verify tables_chunks.csv, check all assignment tables filled)
+**Next action:** COMPLETE — all 34 tasks done. Submit `assignment_2b_rag_pipeline.ipynb`, `assignment_2b_rag_pipeline.html`, and `tables_chunks.csv`.
 
 ---
 
@@ -15,7 +15,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 
 ---
 
-## Progress: 30/34 tasks complete
+## Progress: 34/34 tasks complete ✅ DONE
 
 | Group | Status | Summary |
 |-------|--------|---------|
@@ -25,7 +25,7 @@ https://github.com/dvksuman/assignment-2b-rag-pipeline
 | Group 4 — BM25 + Hybrid | ✅ Done | BM25=2.00/3.0, Hybrid RRF=2.40/3.0 |
 | Group 5 — Cross-Encoder | ✅ Done | Rank-change rate 20%, avg rerank latency 104.74ms |
 | Group 6 — Tabular RAG | ✅ Done | 94 tables, 550 rows, index 1311→1861, TQ2/TQ3 top-4 all table hits |
-| Group 7 — Finalisation | ⏳ Next | |
+| Group 7 — Finalisation | ✅ Done | HTML exported (704KB), tables_chunks.csv (1046 rows), all tables filled |
 
 ---
 

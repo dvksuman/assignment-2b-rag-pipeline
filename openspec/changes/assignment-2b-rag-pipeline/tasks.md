@@ -48,7 +48,7 @@
 
 ## 7. Finalisation & Submission
 
-- [ ] 7.1 Run all notebook cells in sequence; verify no errors and all output tables populated
-- [ ] 7.2 Export notebook to HTML: `jupyter nbconvert --to html assignment_2b_rag_pipeline.ipynb`
-- [ ] 7.3 Verify `tables_chunks.csv` exists and has correct serialised format
-- [ ] 7.4 Review all assignment requirement tables are filled (A2, B2, C1 metrics, C2 demo)
+- [x] 7.1 Run all notebook cells in sequence; verify no errors and all output tables populated
+- [x] 7.2 Export notebook to HTML: `jupyter nbconvert --to html assignment_2b_rag_pipeline.ipynb`
+- [x] 7.3 Verify `tables_chunks.csv` exists and has correct serialised format
+- [x] 7.4 Review all assignment requirement tables are filled (A2, B2, C1 metrics, C2 demo)

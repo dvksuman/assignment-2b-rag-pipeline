@@ -22,6 +22,11 @@ This file is auto-updated during implementation. Each entry documents a problem 
 
 <!-- Entries will be appended below as implementation progresses -->
 
+## Group 7 — HTML Export workaround (2026-07-22)
+**Problem:** `jupyter nbconvert` and `python -m nbconvert` both fail with `PermissionError: /usr/local/share/jupyter/conf.json` — the directory doesn't exist and can't be created without sudo.
+**Fix:** Monkey-patch `TemplateExporter._get_conf` to catch `PermissionError` and return `{}`. Then call `HTMLExporter` directly via Python. Produces identical HTML output.
+**Lesson:** On locked-down Macs, always have this fallback ready instead of fighting sudo.
+
 ## LL-01 — pip dependency conflict with pillow
 **Problem:** `pip install` reported a conflict: `streamlit 1.46.0 requires pillow<12` but `pillow 12.3.0` is installed.  
 **Root cause:** Streamlit pinned to an older pillow range; our install has a newer version.  
