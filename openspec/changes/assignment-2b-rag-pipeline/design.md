@@ -86,3 +86,12 @@ Standard k=60 used as per assignment spec. Fusion takes union of Dense top-5 and
 Dense: [3,3,3,2,2,3,3,3,3,2] avg=2.70
 BM25:  [3,1,2,3,1,2,1,2,3,2] avg=2.00
 Hybrid:[3,2,2,2,1,3,3,2,3,3] avg=2.40
+
+
+## Group 6 Design Decisions (2026-07-22)
+
+- **PDFs:** Download NVIDIA, Apple, Amazon fresh in Colab (Berkshire skipped — poor table structure). URLs reused from Assignment 1B notebook.
+- **Index strategy:** Extend `chunks_index` in-place via `index.add()`. Text chunks at positions 0..1310, table rows at 1311+. Boundary captured as `TEXT_CHUNK_COUNT = chunks_index.ntotal` before `.add()`.
+- **Metadata:** Separate `table_chunks` list (not merged into `chunks_semantic`). Table hit detected by `idx >= TEXT_CHUNK_COUNT`; looked up as `table_chunks[idx - TEXT_CHUNK_COUNT]`.
+- **Serialisation format:** `[COMPANY] Col1: val1 | Col2: val2 | ...`. None cells and empty pairs skipped. `re.sub(r'\s+', ' ', cell)` used to collapse whitespace.
+- **Tabular queries:** 3 new numeric-only queries (not reusing Group 3–5 queries) to demonstrate tabular RAG advantage clearly.

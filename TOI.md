@@ -91,6 +91,28 @@ print(norms)   # should all be ~1.0
 pip show sentence-transformers faiss-cpu rank_bm25 pdfplumber transformers | grep -E "^Name|^Version"
 ```
 
+## Group 6 — Tabular RAG patterns
+
+```python
+# Download a PDF from URL in Colab
+import urllib.request
+urllib.request.urlretrieve(url, local_path)  # blocks until complete
+
+# Extract all tables from a PDF (pdfplumber)
+with pdfplumber.open(path) as pdf:
+    for page in pdf.pages:
+        tables = page.extract_tables()  # list of tables; each table = list of rows (list of cells)
+
+# Extend existing FAISS index in-place (no rebuild needed)
+TEXT_CHUNK_COUNT = chunks_index.ntotal         # capture boundary BEFORE adding
+chunks_index.add(new_embeddings.astype("float32"))
+# detect table hit: if result_idx >= TEXT_CHUNK_COUNT → table_chunks[result_idx - TEXT_CHUNK_COUNT]
+
+# L2-normalise a batch of embeddings manually (alternative to faiss.normalize_L2)
+norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
+embeddings_normalised = embeddings / norms
+```
+
 ## BM25 useful commands
 # Build BM25 index
 bm25 = BM25Okapi([text.lower().split() for text in corpus])

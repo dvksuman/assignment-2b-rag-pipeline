@@ -16,6 +16,8 @@ This file is auto-updated during implementation. Each entry documents a problem 
 
 **Separate metadata list:** Keep `table_chunks` as a separate list (not merged into `chunks_semantic`). Look up with `table_chunks[idx - TEXT_CHUNK_COUNT]`. Avoids mutating the existing data structure.
 
+**Actual results (2026-07-22):** NVIDIA=27 tables, Apple=57 tables, Amazon=10 tables → 94 total → 550 serialised rows. Index grew 1311→1861. TQ2 (Apple net sales) and TQ3 (Amazon operating income) returned top-4 all table hits (scores 0.71–0.78). TQ1 (NVIDIA data center) had text chunk at rank 1 because exact figure appeared in prose too — mixed case. Embedding 550 rows took 16s on Colab GPU.
+
 ---
 
 <!-- Entries will be appended below as implementation progresses -->
