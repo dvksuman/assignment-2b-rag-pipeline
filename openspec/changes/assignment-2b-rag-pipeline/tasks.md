@@ -31,20 +31,20 @@
 
 ## 5. Part C — Cross-Encoder Reranking
 
-- [ ] 5.1 Load `cross-encoder/ms-marco-MiniLM-L-6-v2` from HuggingFace
-- [ ] 5.2 For each of 10 queries: take top-3 from best first-stage retriever → rerank with cross-encoder → record reranking latency
-- [ ] 5.3 Compute rank-change rate: % of queries where top-1 result changed after reranking
-- [ ] 5.4 Manually verify 5 queries: display pre/post reranking top-1 chunk and note relevance change (improved/same/worse)
-- [ ] 5.5 Display reranking metrics summary and analysis markdown cell
+- [x] 5.1 Load `cross-encoder/ms-marco-MiniLM-L-6-v2` from HuggingFace
+- [x] 5.2 For each of 10 queries: take top-3 from best first-stage retriever → rerank with cross-encoder → record reranking latency
+- [x] 5.3 Compute rank-change rate: % of queries where top-1 result changed after reranking
+- [x] 5.4 Manually verify 5 queries: display pre/post reranking top-1 chunk and note relevance change (improved/same/worse)
+- [x] 5.5 Display reranking metrics summary and analysis markdown cell
 
 ## 6. Part C — Tabular RAG
 
-- [ ] 6.1 Use `pdfplumber` to extract tables from the 5 financial annual report PDFs; filter to tables with ≥2 cols and ≥2 rows; save each as a CSV (financial PDFs are rich in tables: income statements, balance sheets, segment data)
-- [ ] 6.2 Serialise each table row as `Col1: val1 | Col2: val2 | ...` text strings
-- [ ] 6.3 Save all serialised rows to `tables_chunks.csv`
-- [ ] 6.4 Embed serialised rows with same `all-MiniLM-L6-v2` embedder; add to existing FAISS index (or new mixed index)
-- [ ] 6.5 Run 3 structured tabular queries; show top retrieved results and highlight table-row hits
-- [ ] 6.6 Write 100-word markdown analysis: when does tabular RAG outperform text-chunk RAG, with concrete example
+- [~] 6.1 Use `pdfplumber` to extract tables from the 5 financial annual report PDFs; filter to tables with ≥2 cols and ≥2 rows; save each as a CSV (financial PDFs are rich in tables: income statements, balance sheets, segment data)
+- [~] 6.2 Serialise each table row as `Col1: val1 | Col2: val2 | ...` text strings
+- [~] 6.3 Save all serialised rows to `tables_chunks.csv`
+- [~] 6.4 Embed serialised rows with same `all-MiniLM-L6-v2` embedder; add to existing FAISS index (or new mixed index)
+- [~] 6.5 Run 3 structured tabular queries; show top retrieved results and highlight table-row hits
+- [~] 6.6 Write 100-word markdown analysis: when does tabular RAG outperform text-chunk RAG, with concrete example
 
 ## 7. Finalisation & Submission
 

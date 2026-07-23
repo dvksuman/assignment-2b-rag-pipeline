@@ -4,6 +4,20 @@ This file is auto-updated during implementation. Each entry documents a problem 
 
 ---
 
+## Group 6 — Tabular RAG Design Decisions (2026-07-22)
+
+**PDF availability:** Only `berkshire.pdf` was in `domain_pdfs/` locally. NVIDIA, Apple, Amazon PDFs must be downloaded fresh in Colab using URLs from Assignment 1B notebook.
+
+**FAISS extension pattern:** Use `chunks_index.add(table_embeddings)` to extend in-place. Index positions 0..1310 = text chunks, 1311+ = table rows. Detect table hit with `idx >= TEXT_CHUNK_COUNT` where `TEXT_CHUNK_COUNT = chunks_index.ntotal` captured before `.add()`.
+
+**Serialisation:** `[COMPANY] Col1: val1 | Col2: val2 | ...` with company prefix. Skip `None` cells and empty headers. Use `re.sub(r'\s+', ' ', cell)` to collapse whitespace inside cells.
+
+**L2 normalisation:** Table embeddings MUST be L2-normalised before adding to IndexFlatIP — same as text chunks in Group 3. Forgetting this breaks cosine similarity scores.
+
+**Separate metadata list:** Keep `table_chunks` as a separate list (not merged into `chunks_semantic`). Look up with `table_chunks[idx - TEXT_CHUNK_COUNT]`. Avoids mutating the existing data structure.
+
+---
+
 <!-- Entries will be appended below as implementation progresses -->
 
 ## LL-01 — pip dependency conflict with pillow
@@ -55,3 +69,14 @@ This file is auto-updated during implementation. Each entry documents a problem 
 - Dense beats Hybrid on relevance (2.70 vs 2.40) — RRF helps BM25 failures but can also dilute Dense wins
 - BM25 is 4x faster (5ms vs 21ms) — useful when speed matters more than accuracy
 - Top-3 coverage: Dense=10/10, Hybrid=9/10, BM25=7/10
+
+## LL-Group5 — Cross-Encoder Reranking
+**Problem:** `dense_results[i]` threw KeyError because dense_results is a dict keyed by query string, not integer index.
+**Fix:** Use `dense_results[query]` where query is the string from QUERIES list.
+**Lesson:** Always check how results dicts are keyed before iterating by index.
+
+**Observations:**
+- Cross-encoder avg latency: 104.74ms (vs Dense 21ms) — 5x slower but only runs on 3 chunks
+- Rank-change rate: 20% (2/10 queries) — Dense was already strong at 2.70/3.0
+- Both changes were improvements: Q05 (Berkshire subsidiaries) and Q06 (NVIDIA AI positioning)
+- Two-stage pattern works: fast Dense filter → accurate cross-encoder rerank
